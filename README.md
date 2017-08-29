@@ -12,19 +12,19 @@ Download MicroPython and place in folder
 [Micropython](http://micropython.org/download#esp8266)
 
 Make a virtual environment
-'myvenv venv -m python3
+`myvenv venv -m python3
 
 Activate virtual environment
-'myvenv\Scripts\activate
+`myvenv\Scripts\activate
 
 Pip install Esptool
-'pip install esptool
+`pip install esptool
 
 Erase flash on your Esp8266
-'esptool.py --port <port connected port> erase_flash
+`esptool.py --port <port connected port> erase_flash
 
 Deploy firmware
-'esptool.py --port <port conneccted to> --baud 460800 write_flash --flash_size=detect 0 <downloaded Micropython bin>
+`esptool.py --port <port conneccted to> --baud 460800 write_flash --flash_size=detect 0 <downloaded Micropython bin>
 
 Get MicroPython REPL
 * Connect using PuTTY 
@@ -33,4 +33,4 @@ Get MicroPython REPL
 * Speed 115200
 
 Check Connection
-'print("Hello my esp friend")
+`print("Hello my esp friend")
