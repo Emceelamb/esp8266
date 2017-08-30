@@ -34,3 +34,6 @@ Get MicroPython REPL
 
 Check Connection
 `print("Hello my esp friend")`
+
+## GPIO Pins
+![GPIO Pints](nodemcu_pins.png  )
