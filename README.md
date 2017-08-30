@@ -36,4 +36,4 @@ Check Connection
 `print("Hello my esp friend")`
 
 ## GPIO Pins
-![GPIO Pints](nodemcu_pins.png  )
+![GPIO Pints](https://raw.githubusercontent.com/Emceelamb/esp8266/master/nodemcu_pins.png)
