@@ -1,39 +1,6 @@
 # ESP8266
 
-Experiments using MicroPython
+Here is a collection of experiments with the ESP8266. The esp8266 is a low-cost Wi-Fi microchip that is great for many IoT projects. The chip can be incorporated on SMD projects or on a development board similar to an Arduino. The majority of these projects are made with the NodeMCU which is capable of being programmed with Arduino C/C++, Micropython, or Lua.
 
-## Installing MicroPython on NodeMCU ESP (Windows)
-
-First make a directory on your computer
-    mkdir esp
-    cd esp
-
-Download MicroPython and place in folder
-[Micropython](http://micropython.org/download#esp8266)
-
-Make a virtual environment
-`myvenv venv -m python3`
-
-Activate virtual environment
-`myvenv\Scripts\activate`
-
-Pip install Esptool
-`pip install esptool`
-
-Erase flash on your Esp8266
-`esptool.py --port <port connected port> erase_flash`
-
-Deploy firmware
-`esptool.py --port <port conneccted to> --baud 460800 write_flash --flash_size=detect 0 <downloaded Micropython bin>
-
-Get MicroPython REPL
-* Connect using PuTTY 
-* Use Serial Connection
-* Connect with port you are connected to 
-* Speed 115200
-
-Check Connection
-`print("Hello my esp friend")`
-
-## GPIO Pins
+## NodeMCU GPIO Pins
 ![GPIO Pints](https://raw.githubusercontent.com/Emceelamb/esp8266/master/nodemcu_pins.png)
