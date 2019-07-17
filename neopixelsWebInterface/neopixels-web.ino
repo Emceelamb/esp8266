@@ -1,9 +1,8 @@
-
 #include <ESP8266WiFi.h>
- 
-const char* ssid = "NETGEAR06";
-const char* password = "perfectcar816";
- 
+
+const char* ssid = "088140";
+const char* password = "73348979";
+
 //int ledPin = LED_BUILTIN  ; // GPIO13
 //int ledPin = 13  ; // GPIO13
 
@@ -12,7 +11,7 @@ WiFiServer server(80);
 
 #include <Adafruit_NeoPixel.h>
 #ifdef __AVR__
- #include <avr/power.h> // Required for 16 MHz Adafruit Trinket
+#include <avr/power.h> // Required for 16 MHz Adafruit Trinket
 #endif
 
 // Digital IO pin connected to the button. This will be driven with a
@@ -24,38 +23,38 @@ WiFiServer server(80);
 
 #define PIXEL_COUNT 10  // Number of NeoPixels
 
- Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 
- boolean oldState = HIGH;
+boolean oldState = HIGH;
 int     mode     = 0;    // Currently-active animation mode, 0-9
 
 
 void setup() {
   Serial.begin(115200);
   delay(10);
- 
+
   pinMode(PIXEL_PIN , OUTPUT);
   digitalWrite(PIXEL_PIN , LOW);
- 
+
   // Connect to WiFi network
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
- 
+
   WiFi.begin(ssid, password);
- 
+
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
   Serial.println("");
   Serial.println("WiFi connected");
- 
+
   // Start the server
   server.begin();
   Serial.println("Server started");
- 
+
   // Print the IP address
   Serial.print("Use this URL to connect: ");
   Serial.print("http://");
@@ -63,27 +62,26 @@ void setup() {
   Serial.println("/");
     strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
   strip.show();  // Initialize all pixels to 'off'
- 
 }
- 
+
 void loop() {
   // Check if a client has connected
   WiFiClient client = server.available();
   if (!client) {
     return;
   }
- 
+
   // Wait until the client sends some data
   Serial.println("new client");
   while(!client.available()){
     delay(1);
   }
- 
+
   // Read the first line of the request
   String request = client.readStringUntil('\r');
   Serial.println(request);
   client.flush();
- 
+
   // Match the request
 
   int changeVal = LOW; 
@@ -101,19 +99,19 @@ void loop() {
     if (request.indexOf("/LED=CHANGE") != -1)  {
     changeVal = HIGH;
   }
- 
+
 // Set ledPin according to the request
 //digitalWrite(ledPin, value);
- 
+
   // Return the response
   client.println("HTTP/1.1 200 OK");
   client.println("Content-Type: text/html");
   client.println(""); //  do not forget this one
   client.println("<!DOCTYPE HTML>");
   client.println("<html>");
- 
+
   client.print("Led pin is now: ");
- 
+
   if(value == HIGH) {
     client.print("On");
   } else {
@@ -125,7 +123,7 @@ void loop() {
 
     client.println("<a href=\"/LED=CHANGE\"\"><button>CHANGE</button></a><br />");  
 client.println("</html>");
- 
+
   delay(1);
   Serial.println("Client disonnected");
   Serial.println("");
@@ -161,7 +159,6 @@ if(changeVal == HIGH) {      // Yes, still low
           break;
       }
     }
- 
 }
 
 
@@ -217,7 +214,7 @@ void rainbow(int wait) {
 // Rainbow-enhanced theater marquee. Pass delay time (in ms) between frames.
 void theaterChaseRainbow(int wait) {
   int firstPixelHue = 0;     // First pixel starts at red (hue 0)
-  for(int a=0; a<30; a++) {  // Repeat 30 times...
+  for(int a=0; a<1; a++) {  // Repeat 30 times...
     for(int b=0; b<3; b++) { //  'b' counts from 0 to 2...
       strip.clear();         //   Set all pixels in RAM to 0 (off)
       // 'c' counts up from 'b' to end of strip in increments of 3...
