@@ -1,10 +1,8 @@
 #include <ESP8266WiFi.h>
 
-const char* networkSSID = "NETGEAR06";
-const char* networkPass = "perfectcar816";
+const char* networkSSID = "ssid";
+const char* networkPass = "pass";
     
-const char* networkForward = "MyLittleNetwork";
-const char* forwardPass = "network123";
 void setup()
 {
   Serial.begin(115200);

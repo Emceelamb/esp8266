@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char* networkName = "MyLittleNetwork";
-const char* passkey = "network123";
+const char* networkName = "wlanSSID";
+const char* passkey = "wlanPASS";
 void setup()
 {
   Serial.begin(115200);
