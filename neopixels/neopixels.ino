@@ -1,7 +1,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define LED_PIN 13
-#define LED_COUNT 10
+#define LED_COUNT 35
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -21,7 +21,7 @@ void loop() {
   slider = 1023 - slider;
   Serial.print(slider);
 
-  colorWipe(strip.Color(255, 0, 0), 50);
+  colorWipe(strip.Color(255, 0, 255), 50);
 }
 
 void colorWipe(uint32_t color, int wait){

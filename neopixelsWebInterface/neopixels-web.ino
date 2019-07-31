@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid = "ssid";
-const char* password = "ssidpass";
+const char* ssid = "Just Another WiFi";
+const char* password = "reallyeasy";
 
 //int ledPin = LED_BUILTIN  ; // GPIO13
 //int ledPin = 13  ; // GPIO13
@@ -21,7 +21,7 @@ WiFiServer server(80);
 
 #define PIXEL_PIN    13  // Digital IO pin connected to the NeoPixels.
 
-#define PIXEL_COUNT 10  // Number of NeoPixels
+#define PIXEL_COUNT 35  // Number of NeoPixels
 
 Adafruit_NeoPixel strip(PIXEL_COUNT, PIXEL_PIN, NEO_GRB + NEO_KHZ800);
 

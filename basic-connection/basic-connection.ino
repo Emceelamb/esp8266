@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char* networkSSID = "ssid";
-const char* networkPass = "pass";
+const char* networkSSID = "Just another WiFi";
+const char* networkPass = "reallyeasy";
     
 void setup()
 {

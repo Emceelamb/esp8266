@@ -1,5 +1,3 @@
-
-
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <ESP8266WiFiMulti.h>
@@ -7,20 +5,31 @@
 #include <ESP8266WebServer.h>
 #include <FS.h>   // Include the SPIFFS library
 
-ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
+#include <Adafruit_NeoPixel.h>
 
+ESP8266WiFiMulti wifiMulti;     // Create an instance of the ESP8266WiFiMulti class, called 'wifiMulti'
 ESP8266WebServer server(80);    // Create a webserver object that listens for HTTP request on port 80
 
 String getContentType(String filename); // convert the file extension to the MIME type
 bool handleFileRead(String path);       // send the right file to the client (if it exists)
 
+#define LED_PIN 13
+#define LED_COUNT 35
+
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+
 void setup() {
   Serial.begin(115200);         // Start the Serial communication to send messages to the computer
   delay(10);
   Serial.println('\n');
+  // Lights
+  pinMode(0, INPUT);
+  strip.begin();
+  strip.show();
+  strip.setBrightness(50);
 
+  // wifi
   wifiMulti.addAP("Just Another WiFi", "reallyeasy"); 
-
   Serial.println("Connecting ...");
   int i = 0;
   while (wifiMulti.run() != WL_CONNECTED) { // Wait for the Wi-Fi to connect
@@ -52,6 +61,8 @@ void setup() {
 
 void loop(void) {
   server.handleClient();
+  colorWipe(strip.Color(255, 0, 255), 50);
+
 }
 
 String getContentType(String filename) { // convert the file extension to the MIME type
@@ -74,4 +85,12 @@ bool handleFileRead(String path) { // send the right file to the client (if it e
   }
   Serial.println("\tFile Not Found");
   return false;                                         // If the file doesn't exist, return false
+}
+
+void colorWipe(uint32_t color, int wait){
+  for(int i = 0; i<strip.numPixels(); i++){
+    strip.setPixelColor(i, color);
+    strip.show();
+    delay(wait);
+  }
 }
