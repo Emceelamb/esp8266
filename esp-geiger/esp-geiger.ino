@@ -3,8 +3,8 @@
 
 #define LED D1
 
-const char* SSID = "Just Another WiFi";
-const char* PASS = "reallyeasy";
+const char* SSID = "<ssid>";
+const char* PASS = "<pass>";
 
 int frequency=2600;
 //
