@@ -1,0 +1,36 @@
+# Making Noise from WiFi
+
+In this tutorial I generate noise from WiFi signal using a NodeMCU and it's built in WiFi. I'll be using the RSSI property to manipulate the tones.
+
+## RSSI
+RSSI, or "Received Signal Strength Indicator" is a measurement of the strength of a signal from a device to wireless access point. RSSI value is pulled from the client device (*received*). This is different from the transmit power from router or access point. **Basically the closer to 0 dBm the better the signal is.**
+
+### RSSI signal table
+|Signal Strength|     TL;DR  |     Required for |
+|---------------|------------|------------------|
+|-30 dBm|     Amazing|     Max achievable signal strength. The client can only be a few feet from the AP to achieve this. Not typical or desirable in the real world.  N/A|
+|-67 dBm |   Very Good  |Minimum signal strength for applications that require very reliable, timely delivery of data packets.   VoIP/VoWiFi, streaming video |
+|-70 dBm|     Okay|    Minimum signal strength for reliable packet delivery.   Email, web|
+|-80 dBm |   Not Good |  Minimum signal strength for basic connectivity. Packet delivery may be unreliable.  N/A |
+|-90 dBm |     Unusable |  Approaching or drowning in the noise floor. Any functionality is highly unlikely.   N/A|
+
+If you're interested in viewing device information from your router on an Openwrt router you can use the command `iw dev <interface>  station dump` to view wifi signal strengths of connected devices.
+
+
+## WiFi Geiger 
+## Hardware
+* NodeMCU
+* Passive Buzzer
+* LED
+
+_\*this tutorial assumes that you have a NodeMCU environment setup and connected to WiFi. You can review this in the [web server tutorial](/blog/2019-01-28-Simple-server-esp/ "web server tutorial")_.
+
+To get the WiFi signal is pretty straightforward. When importing the ESP8266WiFi library, your WiFi object receivers the RSSI method which returns the RSSI. To get it to repeat, place the call in the loop function. 
+
+I map the signal between -90 and -30 to between 10 to 1500 which will be used as a delay and I set the frequency to the infamous 2600hz. I use this as a delay to create pauses.
+
+The end result is a device reminiscent of a geiger counter. As the signal strength weakened  the device would beep faster and more erratically while a strong connection would have a stable rhythm.
+
+## Wifi Theremin
+This experiment was largely similar to the geiger. Instead of mapping the rssi to a time delay, I mapped it to a frequency and fed that to the tone function. This creates a neat theremin sort of instrument, though there are many factors that affect wifi signal strength, so it is difficult to play. But obstructing the esp8266 is a reliable way to get poor wifi signal.
+
