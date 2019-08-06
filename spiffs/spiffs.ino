@@ -19,7 +19,7 @@ void setup() {
   delay(10);
   Serial.println('\n');
 
-  wifiMulti.addAP("Just Another WiFi", "reallyeasy"); 
+  wifiMulti.addAP("<ssid>", "<pass>"); 
 
   Serial.println("Connecting ...");
   int i = 0;
