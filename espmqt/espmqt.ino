@@ -1,13 +1,13 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-const char* ssid="Just Another WiFi";
-const char* pass="reallyeasy";
+const char* ssid="<ssid>";
+const char* pass="<passphrase>";
 
 const char* mqttServer="192.168.8.1";
 const int mqttPort=1883;
-const char* mqttUser="tumbleweed";
-const char* mqttPass="mosquitto";
+const char* mqttUser="<mqt user>";
+const char* mqttPass="<mqt pass>";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -26,8 +26,8 @@ void setup(){
     Serial.println("Connected to the WiFi network.");
 
     client.setServer(mqttServer, mqttPort);
-    // client.setCallback(callback);
     client.setCallback(callback);
+
     while(!client.connected()){
 
         Serial.println("Connecting to mosquitto...");
